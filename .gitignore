@@ -1,0 +1,25 @@
+# Python files
+*.pyc
+__pycache__/
+
+# Local settings
+local_settings.py
+
+# Compiled files
+*.egg-info
+dist/
+build/
+
+# Virtual environment
+venv/
+
+# Database files
+db.sqlite3
+
+# Static and media files (if you're not using a separate storage system)
+media/
+static/
+
+# IDE-specific files
+*.idea
+*.vscode
