@@ -39,7 +39,8 @@ NB: Leveraged the structure of QuickStart – Free Bootstrap 5 Business Website 
 
 
 
-**SCREENSHOTS**
+
+**VISUALS OVERVIEW**
 
 Homepage
 
