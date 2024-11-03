@@ -1,4 +1,6 @@
 **TimeTab -- Automatic Time Table Generator**
+
+
 The project, Time Table Generator [TimeTab], is a web application developed using the Python Django Framework.
 
 The application manage courses, subjects, staff, and generate a timetable.The user can input the data of the college/university which is required to generate the timetable.
