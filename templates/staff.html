@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+
+{% load static %}
+{% load icons %}
+
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Staffs</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="Free HTML Templates" name="keywords" />
+    <meta content="Free HTML Templates" name="description" />
+
+
+    <script src="https://kit.fontawesome.com/0bfcbd3c76.js" crossorigin="anonymous"></script>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Handlee&family=Nunito&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
+      rel="stylesheet"
+    />
+
+      <!-- Customized Bootstrap Stylesheet -->
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet" />
+  </head>
+
+  <style>
+      .section-title:hover{
+      color:Black;
+      }
+
+  </style>
+
+  <body>
+
+
+    <!-- Header Start -->
+    <div class="container-fluid bg-primary mb-5">
+      <div
+        class="d-flex flex-column align-items-center justify-content-center"
+        style="min-height: 400px"
+      >
+        <h3 class="display-3 font-weight-bold text-white">Staffs</h3>
+        <nav aria-label="breadcrumb">
+
+</nav>
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'homepage' %}">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Staffs</li>
+  </ol>
+</nav>
+      </div>
+    </div>
+    <!-- Header End -->
+
+    <!-- Team Start -->
+    <div class="container-fluid pt-5">
+      <div class="container">
+        <div class="text-center pb-2">
+          <a class="section-title px-5 btn-primary" role="button" href="{% url 'addStaff' %}">
+            <span class="px-2">Add Staff</span>
+          </a>
+<!--          <h1 class="mb-4" style="padding:20px">Meet  Staffs</h1>-->
+        </div>
+        <div class="row">
+          <!-- Inside your for loop for staff members -->
+{% for i in data %}
+<div class="col-md-6 col-lg-3 text-center team mb-5">
+    <div class="position-relative overflow-hidden mb-4" style="border-radius: 100%">
+        <img class="img-fluid w-100" src="{% static 'assets/img/team.png' %}" alt="" />
+        <div class="team-social d-flex align-items-center justify-content-center w-100 h-100 position-absolute">
+            <a class="btn btn-outline-light text-center mr-2 px-0" style="width: 38px; height: 38px" href="{% url 'updateStaff' i.id %}">{% icon 'edit' %}</a>
+            <a class="btn btn-outline-light text-center mr-2 px-0" style="width: 38px; height: 38px" href="{% url 'delStaff' i.id %}">{% icon 'del' %}</i></a>
+        </div>
+    </div>
+    <h4>{{ i.staff_id }}</h4>
+    <i>{{ i.staff_name }}</i>
+    <div>
+<!--        <strong>Subjects:</strong>-->
+        <ul style="list-style:none">
+            {% for subject in i.subject.all %}
+                <li>{{ subject.subject_name }}</li>
+            {% empty %}
+                <li>No subjects assigned</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endfor %}
+
+
+    </div>
+    <!-- Team End -->
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary p-3 back-to-top"
+      ><i class="fa fa-angle-double-up"></i
+    ></a>
+
+    <!-- JavaScript Libraries -->
+<!--    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>-->
+<!--    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>-->
+<!--    <script src="lib/easing/easing.min.js"></script>-->
+<!--    <script src="lib/owlcarousel/owl.carousel.min.js"></script>-->
+<!--    <script src="lib/isotope/isotope.pkgd.min.js"></script>-->
+<!--    <script src="lib/lightbox/js/lightbox.min.js"></script>-->
+
+<!--    &lt;!&ndash; Contact Javascript File &ndash;&gt;-->
+<!--    <script src="mail/jqBootstrapValidation.min.js"></script>-->
+<!--    <script src="mail/contact.js"></script>-->
+
+<!--    &lt;!&ndash; Template Javascript &ndash;&gt;-->
+<!--    <script src="js/main.js"></script>-->
+  </body>
+</html>

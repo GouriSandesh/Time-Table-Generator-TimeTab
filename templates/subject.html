@@ -1,0 +1,114 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+{% load static %}
+{% load icons %}
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Courses</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
+
+    <!-- CSS here -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <script src="https://kit.fontawesome.com/0bfcbd3c76.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+
+    <style>
+        .single__program.card {
+            background-color: #f5f9fa;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            width: 100%;
+        }
+        .single__program.card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+        }
+        .single__program .program_thumb {
+            overflow: hidden;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        .single__program .program__content h4 {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 15px 0 10px;
+            color: #17a2b8;
+        }
+        .single__program .program__content p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+        }
+        .single__program .program__content .boxed-btn5 {
+            display: inline-block;
+            background-color: #e4eded;
+            color: #ffffff;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.2s;
+        }
+        .single__program .program__content .boxed-btn5:hover {
+            background-color: #6dc1cf;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Header Start -->
+<div class="container-fluid bg-primary mb-5">
+    <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 400px">
+        <h3 class="display-3 font-weight-bold text-white">Subjects</h3>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'homepage' %}">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Subjects</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+<!-- Header End -->
+
+<div class="popular_program_area program__page">
+    <div class="container">
+        <div class="row">
+            <div class="Appointment">
+                <div class="book_btn d-none d-lg-block" style="padding-bottom:15px">
+                    <a data-scroll-nav='1' href="{% url 'addSubject' %}">ADD SUBJECT</a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            {% for i in data %}
+            <div class="col-md-4 col-sm-6 mb-4">
+                <div class="single__program card">
+                    <div class="program_thumb">
+                        <!-- <img src="img/program/1.png" alt=""> -->
+                    </div>
+                    <div class="program__content">
+                        <div style="display:flex">
+                            <span>Course Name : {{i.course}}</span>
+                            <div><a href="{% url 'updateSubject' i.id %}" style="padding-left:20px"><span>{% icon 'edit' %}</span></a></div>
+                            <div><a href="{% url 'delSubject' i.id %}" style="padding-left:20px"><span>{% icon 'del' %}</span></a></div>
+                        </div>
+                        <h4>{{i.subject_name}}</h4>
+                        <p>{{i.course_desc}}</p>
+                        <a href="#" class="boxed-btn5">Syllabus</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

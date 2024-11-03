@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Generated Timetable</title>
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .timetable-container {
+            max-width: 800px;
+            margin: 50px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h3 {
+            text-align: center;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #009FE6;
+            color: white;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        .free-period {
+            color: #888;
+            font-style: italic;
+        }
+        /* Styling for buttons */
+        .button-container {
+            text-align: center;
+            margin: 20px;
+        }
+        .back-button, .regenerate-button {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #65C7F7;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        .back-button:hover, .regenerate-button:hover {
+            background-color: #149DBF;
+        }
+    </style>
+</head>
+<body>
+
+<div class="button-container">
+    <button type="button" class="back-button" onclick="history.back()">Go Back</button>
+    <a href="{% url 'generate_timetable_view' %}" class="regenerate-button">Generate another</a>
+</div>
+
+{% if timetable %}
+    <div class="timetable-container">
+        <h3>Timetable for {{ course_name }}</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Days</th>
+                    <th>Period 1 (9-10 AM)</th>
+                    <th>Period 2 (10-11 AM)</th>
+                    <th>Period 3 (11-12 PM)</th>
+                    <th>Period 4 (12-1 PM)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for day, periods in timetable.items %}
+                    <tr>
+                        <td><strong>{{ day }}</strong></td>
+                        {% for period in periods %}
+                            <td>
+                                {% if period %}
+                                    {{ period.subject.subject_name }}<br>
+                                    <small>(Staff: {{ period.staff.staff_name }})</small>
+                                {% else %}
+                                    <span class="free-period">Free</span>
+                                {% endif %}
+                            </td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% else %}
+    <p style="text-align: center; color: #888;">No timetable available.</p>
+{% endif %}
+
+</body>
+</html>
