@@ -3,6 +3,7 @@ The project, Time Table Generator [TimeTab], is a web application developed usin
 
 The application manage courses, subjects, staff, and generate a timetable.The user can input the data of the college/university which is required to generate the timetable.
 The user must add the following details:
+
 1.Teachers
 
 2.Courses
@@ -11,7 +12,9 @@ The user must add the following details:
 
 Upon successfull entry of the data into sqlite database, the user can navigate to the "Generate Timetable" page to start the process of generating the timetable.
 This automatically generate a timetable (for each course, in day(column)/period(day) format) that assigns subjects to periods randomly, ensuring:
+
 ■ No staff availability conflicts.
+
 ■ Subjects are well-placed throughout the week.
 
 Technologies Used:
